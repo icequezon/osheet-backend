@@ -53,6 +53,17 @@ class FloorService():
         db.session.add(floor_linen)
         db.session.commit()
 
+    @staticmethod
+    def remove_linen(id, floor_linen_id):
+        floor = Floor.query.filter_by(id=id).first()
+        if not floor:
+            raise Exception("Floor not found")
+        floor_linen = FloorLinen.query.filter_by(id=floor_linen_id).first()
+        if not floor_linen:
+            raise Exception("Floor Linen not found")
+        db.session.delete(floor_linen)
+        db.session.commit()
+
 class LinenTypeService():
     @staticmethod
     def create(name):

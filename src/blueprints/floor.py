@@ -65,3 +65,17 @@ def add_linen(id):
         return jsonify({'message': 'Linen Type added to floor successfully'}), 200
     except Exception as e:
         return jsonify({"error": e.args[0]}), 404
+
+@app.route('/<id>/remove_linen', methods=['POST'])
+def remove_linen(id):
+    data = request.get_json()
+    floor_linen_id = data.get('floor_linen_id')
+
+    if not floor_linen_id:
+        return jsonify({'error': 'Missing floor_linen_id'}), 400
+
+    try:
+        FloorService.remove_linen(id, floor_linen_id=floor_linen_id)
+        return jsonify({'message': 'Floor Linen removed from floor successfully'}), 200
+    except Exception as e:
+        return jsonify({"error": e.args[0]}), 404

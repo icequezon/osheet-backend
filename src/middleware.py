@@ -1,5 +1,5 @@
 from flask import request, jsonify
-from .config import API_KEY
+from config import API_KEY
 
 
 def check_api_key():
