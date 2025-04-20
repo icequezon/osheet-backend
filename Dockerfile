@@ -19,5 +19,5 @@ COPY . .
 EXPOSE 5001
 
 # Run the Flask app with Gunicornj
-CMD ["gunicorn", "--chdir", "src", "--bind", "0.0.0.0:5001", "app:app"]
+CMD ["gunicorn", "--chdir", "src", "--bind", "0.0.0.0:5001", "app:app", "--log-level ${DEBUG_LOG_LEVEL:-info}"]
 
