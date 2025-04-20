@@ -1,4 +1,5 @@
 from database import db
+from datetime import datetime
 from .models import Floor, FloorImage, FloorLinen, LinenType
 
 class FloorService():
@@ -28,7 +29,7 @@ class FloorService():
             raise Exception("Floor not found")
         floor_image = FloorImage()
         floor_image.image = image
-        floor_image.timestamp = timestamp
+        floor_image.timestamp = datetime.fromisoformat(timestamp)
         db.session.add(floor_image)
         db.session.commit()
         floor.latest_image_id = floor_image.id
